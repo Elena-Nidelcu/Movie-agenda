@@ -35,6 +35,11 @@ function App() {
     }
   }
 
+  const handleDelete = (index) => {
+    const updated = movies.filter((_, i) => i !== index)
+    setMovies(updated)
+  }  
+
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] p-6 transition-colors">
       <div className="flex justify-between items-center mb-6">
@@ -55,14 +60,21 @@ function App() {
 
       <ul className="grid gap-4">
         {movies.map((m, i) => (
-          <li key={i} className="border p-4 rounded shadow bg-white dark:bg-zinc-800 dark:text-white">
+          <li key={i} className="border p-4 rounded shadow bg-white dark:bg-zinc-800 dark:text-white relative">
             <h2 className="text-lg font-semibold">{m.title} ({m.year})</h2>
             <p>🎬 Directed by: {m.director}</p>
             <p>🎞 Genre: {m.genre || 'N/A'}</p>
             <p>⭐ Rating: {m.rating || 'N/A'}</p>
+            <button
+              onClick={() => handleDelete(i)}
+              className="absolute top-2 right-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
+
     </div>
   )
 }
