@@ -12,7 +12,8 @@ function App() {
     year: '',
     genre: '',
     rating: '',
-    director: ''
+    director: '',
+    duration: '' 
   })
 
   useEffect(() => {
@@ -67,6 +68,7 @@ function App() {
         <input className="border p-2" name="genre" placeholder="Genre" value={form.genre} onChange={handleChange} />
         <input className="border p-2" name="rating" placeholder="Rating (1-10)" value={form.rating} onChange={handleChange} />
         <input className="border p-2" name="director" placeholder="Director" value={form.director} onChange={handleChange} />
+        <input className="border p-2" name="duration" placeholder="Duration (e.g. 120 min)" value={form.duration} onChange={handleChange} />
         <button type="submit" className="bg-blue-500 text-white py-2 rounded">Add Movie</button>
       </form>
 
@@ -77,6 +79,7 @@ function App() {
             <p>🎬 Directed by: {m.director}</p>
             <p>🎞 Genre: {m.genre || 'N/A'}</p>
             <p>⭐ Rating: {m.rating || 'N/A'}</p>
+            <p>⏱ Duration: {m.duration || 'N/A'}</p>
             <button
               onClick={() => handleDelete(i)}
               className="absolute top-2 right-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
