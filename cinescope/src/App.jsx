@@ -33,12 +33,24 @@ function App() {
       setMovies([...movies, form])
       setForm({ title: '', year: '', genre: '', rating: '', director: '' })
     }
+    if (form.title && form.year && form.director) {
+      setMovies([...movies, { ...form, liked: false }])
+      setForm({ title: '', year: '', genre: '', rating: '', director: '' })
+    }
   }
 
   const handleDelete = (index) => {
     const updated = movies.filter((_, i) => i !== index)
     setMovies(updated)
   }  
+
+  const toggleLike = (index) => {
+    const updated = movies.map((movie, i) =>
+      i === index ? { ...movie, liked: !movie.liked } : movie
+    )
+    setMovies(updated)
+  }
+  
 
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] p-6 transition-colors">
@@ -71,6 +83,14 @@ function App() {
             >
               Delete
             </button>
+            <button
+              onClick={() => toggleLike(i)}
+              className="absolute top-2 left-2 text-xl"
+              aria-label="Toggle Like"
+            >
+              {m.liked ? '❤️' : '🤍'}
+            </button>
+
           </li>
         ))}
       </ul>
