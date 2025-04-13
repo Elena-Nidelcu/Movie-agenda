@@ -16,6 +16,8 @@ function App() {
     duration: '' 
   })
 
+  const [editIndex, setEditIndex] = useState(null)
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
   }, [theme])
@@ -30,15 +32,32 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+  
     if (form.title && form.year && form.director) {
-      setMovies([...movies, form])
-      setForm({ title: '', year: '', genre: '', rating: '', director: '' })
-    }
-    if (form.title && form.year && form.director) {
-      setMovies([...movies, { ...form, liked: false }])
-      setForm({ title: '', year: '', genre: '', rating: '', director: '' })
+      if (editIndex !== null) {
+        const updated = [...movies]
+        updated[editIndex] = { ...form, liked: movies[editIndex].liked || false }
+        setMovies(updated)
+        setEditIndex(null)
+      } else {
+        setMovies([...movies, { ...form, liked: false }])
+      }
+  
+      setForm({
+        title: '',
+        year: '',
+        genre: '',
+        rating: '',
+        director: '',
+        duration: ''
+      })
     }
   }
+  
+  const handleEdit = (index) => {
+    setEditIndex(index)
+    setForm(movies[index])
+  }  
 
   const handleDelete = (index) => {
     const updated = movies.filter((_, i) => i !== index)
@@ -69,7 +88,9 @@ function App() {
         <input className="border p-2" name="rating" placeholder="Rating (1-10)" value={form.rating} onChange={handleChange} />
         <input className="border p-2" name="director" placeholder="Director" value={form.director} onChange={handleChange} />
         <input className="border p-2" name="duration" placeholder="Duration (e.g. 120 min)" value={form.duration} onChange={handleChange} />
-        <button type="submit" className="bg-blue-500 text-white py-2 rounded">Add Movie</button>
+        <button type="submit" className="bg-blue-500 text-white py-2 rounded">
+          {editIndex !== null ? 'Save Changes' : 'Add Movie'}
+        </button>
       </form>
 
       <ul className="grid gap-4">
@@ -80,6 +101,12 @@ function App() {
             <p>🎞 Genre: {m.genre || 'N/A'}</p>
             <p>⭐ Rating: {m.rating || 'N/A'}</p>
             <p>⏱ Duration: {m.duration || 'N/A'}</p>
+            <button
+              onClick={() => handleEdit(i)}
+              className="absolute bottom-2 right-20 px-2 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
+            >
+              Edit
+            </button>
             <button
               onClick={() => handleDelete(i)}
               className="absolute top-2 right-2 px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
