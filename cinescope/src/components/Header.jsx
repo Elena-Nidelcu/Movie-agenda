@@ -1,5 +1,6 @@
 // src/components/Header.jsx
 import '../styles/ToggleSwitch.css'
+import '../styles/Button.css';
 
 export default function Header({ theme, setTheme }) {
   const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'))

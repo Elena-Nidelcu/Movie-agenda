@@ -3,6 +3,7 @@ import Header from './components/Header.jsx';
 import MovieForm from './components/MovieForm.jsx'
 import Filters from './components/Filters.jsx'
 import MovieList from './components/MovieList.jsx'
+import './styles/Button.css';
 
 function App() {
   const [theme, setTheme] = useState('light')
