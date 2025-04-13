@@ -1,13 +1,19 @@
-function Header({ theme, setTheme }) {
-    return (
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">🎥 Watched Movies</h1>
-        <button onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')} className="px-4 py-2 border rounded">
-          {theme === 'light' ? 'Dark' : 'Light'} Mode
-        </button>
+// src/components/Header.jsx
+import '../styles/ToggleSwitch.css'
+
+export default function Header({ theme, setTheme }) {
+  const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'))
+
+  return (
+    <header className="flex justify-between items-center mb-6">
+      <h1 className="text-2xl font-bold">🎬 CineScope</h1>
+      <div className="flex items-center gap-2">
+        <span className="text-sm">{theme === 'light' ? '☀️' : '🌙'}</span>
+        <label className="switch">
+          <input type="checkbox" onChange={toggleTheme} checked={theme === 'dark'} />
+          <span className="slider"></span>
+        </label>
       </div>
-    )
-  }
-  
-  export default Header
-  
+    </header>
+  )
+}
