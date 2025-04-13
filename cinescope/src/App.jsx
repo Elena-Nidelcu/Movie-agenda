@@ -23,7 +23,9 @@ function App() {
     maxRating: '',
     genre: '',
     minDuration: '',
-    maxDuration: ''
+    maxDuration: '',
+    searchTitle: '',
+    searchDirector: ''
   })
 
   useEffect(() => {
@@ -98,7 +100,15 @@ function App() {
       (!filters.minDuration || duration >= parseInt(filters.minDuration)) &&
       (!filters.maxDuration || duration <= parseInt(filters.maxDuration))
 
-    return passesRating && passesGenre && passesDuration
+    const passesTitle =
+      !filters.searchTitle ||
+      m.title.toLowerCase().includes(filters.searchTitle.toLowerCase())
+
+    const passesDirector =
+      !filters.searchDirector ||
+      m.director.toLowerCase().includes(filters.searchDirector.toLowerCase())
+
+    return passesRating && passesGenre && passesDuration && passesTitle && passesDirector
   })
 
   return (
@@ -114,12 +124,7 @@ function App() {
       <form onSubmit={handleSubmit} className="grid gap-2 max-w-md mb-6">
         <input className="border p-2" name="title" placeholder="Title" value={form.title} onChange={handleChange} />
         <input className="border p-2" name="year" placeholder="Year" value={form.year} onChange={handleChange} />
-        <select
-          className="border p-2"
-          name="genre"
-          value={form.genre}
-          onChange={handleChange}
-        >
+        <select className="border p-2" name="genre" value={form.genre} onChange={handleChange}>
           <option value="">Select Genre</option>
           <option value="Action">Action</option>
           <option value="Drama">Drama</option>
@@ -150,6 +155,8 @@ function App() {
       {/* Filters */}
       <div className="grid gap-2 max-w-md mb-6">
         <h2 className="text-lg font-semibold">🔍 Filter Movies</h2>
+        <input className="border p-2" name="searchTitle" placeholder="Search by Title" value={filters.searchTitle} onChange={handleFilterChange} />
+        <input className="border p-2" name="searchDirector" placeholder="Search by Director" value={filters.searchDirector} onChange={handleFilterChange} />
         <input className="border p-2" name="minRating" placeholder="Min Rating" value={filters.minRating} onChange={handleFilterChange} />
         <input className="border p-2" name="maxRating" placeholder="Max Rating" value={filters.maxRating} onChange={handleFilterChange} />
         <select className="border p-2" name="genre" value={filters.genre} onChange={handleFilterChange}>
