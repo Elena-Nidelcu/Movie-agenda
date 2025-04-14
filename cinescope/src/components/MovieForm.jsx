@@ -1,37 +1,54 @@
-function MovieForm({ form, handleChange, handleSubmit, editIndex }) {
-    return (
-      <form onSubmit={handleSubmit} className="grid gap-2 max-w-md mb-6">
-        <input className="border p-2" name="title" placeholder="Title" value={form.title} onChange={handleChange} />
-        <input className="border p-2" name="year" placeholder="Year" value={form.year} onChange={handleChange} />
-        <select className="border p-2" name="genre" value={form.genre} onChange={handleChange}>
-          <option value="">Select Genre</option>
-          <option value="Action">Action</option>
-          <option value="Drama">Drama</option>
-          <option value="War">War</option>
-          <option value="Thriller">Thriller</option>
-          <option value="Biography">Biography</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Crime">Crime</option>
-          <option value="Romance">Romance</option>
-          <option value="Animation">Animation</option>
-          <option value="Horror">Horror</option>
-          <option value="Sci-Fi">Sci-Fi</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="History">History</option>
-          <option value="Music">Music</option>
-          <option value="Sport">Sport</option>
-          <option value="Western">Western</option>
-          <option value="Mystery">Mystery</option>
-        </select>
-        <input className="border p-2" name="rating" placeholder="Rating (1-10)" value={form.rating} onChange={handleChange} />
-        <input className="border p-2" name="director" placeholder="Director" value={form.director} onChange={handleChange} />
-        <input className="border p-2" name="duration" placeholder="Duration (e.g. 120)" value={form.duration} onChange={handleChange} />
-        <button type="submit" className="bg-blue-500 text-white py-2 rounded">
-          {editIndex !== null ? 'Save Changes' : 'Add Movie'}
-        </button>
+import React, { useState } from 'react';
+import '../styles/Form.css';
+
+export default function MovieForm({ onAddMovie }) {
+  const [title, setTitle] = useState('');
+  const [year, setYear] = useState('');
+  const [genre, setGenre] = useState('');
+  const [rating, setRating] = useState('');
+  const [director, setDirector] = useState('');
+  const [duration, setDuration] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!title || !year || !genre || !rating || !director || !duration) return;
+
+    onAddMovie({ title, year, genre, rating, director, duration });
+    setTitle('');
+    setYear('');
+    setGenre('');
+    setRating('');
+    setDirector('');
+    setDuration('');
+  };
+
+  return (
+    <div className="movie-form-container">
+      <form onSubmit={handleSubmit} className="movie-form">
+        <div className="form-group">
+          <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input placeholder="Year" value={year} onChange={(e) => setYear(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+            <option value="">Select Genre</option>
+            <option>Action</option>
+            <option>Comedy</option>
+            <option>Drama</option>
+            <option>Fantasy</option>
+            <option>Horror</option>
+            <option>Romance</option>
+            <option>Sci-Fi</option>
+            <option>Thriller</option>
+          </select>
+          <input placeholder="Rating (1–10)" value={rating} onChange={(e) => setRating(e.target.value)} />
+        </div>
+        <div className="form-group">
+          <input placeholder="Director" value={director} onChange={(e) => setDirector(e.target.value)} />
+          <input placeholder="Duration (e.g. 120)" value={duration} onChange={(e) => setDuration(e.target.value)} />
+        </div>
+        <button className="form-button">Add Movie</button>
       </form>
-    )
-  }
-  
-  export default MovieForm
-  
+    </div>
+  );
+}

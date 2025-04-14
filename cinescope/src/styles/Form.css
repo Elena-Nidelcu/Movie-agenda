@@ -1,0 +1,54 @@
+.movie-form-container {
+    max-width: 90vw;           /* ~3cm space on sides depending on screen size */
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--form-bg, #ffffff);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .movie-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .form-group input,
+  .form-group select {
+    flex: 1;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: var(--input-bg, #fff);
+    color: var(--input-text, #111);
+    min-width: 0;
+  }
+  
+  .form-button {
+    padding: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: var(--primary, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .form-button:hover {
+    background-color: var(--primary-hover, #2563eb);
+  }
+  
