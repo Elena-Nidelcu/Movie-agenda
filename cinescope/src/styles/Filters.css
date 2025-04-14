@@ -1,0 +1,38 @@
+.filter-form-container {
+    max-width: 90vw;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    background: var(--form-bg, #ffffff);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .filter-group input,
+  .filter-group select {
+    flex: 1;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: var(--input-bg, #fff);
+    color: var(--input-text, #111);
+    min-width: 0;
+  }
+  
