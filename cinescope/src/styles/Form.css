@@ -1,54 +1,76 @@
 .movie-form-container {
-    max-width: 90vw;           /* ~3cm space on sides depending on screen size */
-    margin: 0 auto;
-    padding: 2rem;
-    background: var(--form-bg, #ffffff);
-    border-radius: 16px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem var(--shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--card-border);
   }
   
   .movie-form {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
   
   .form-group {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
   }
   
   .form-group input,
   .form-group select {
     flex: 1;
-    padding: 1.2rem;
-    font-size: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: var(--input-bg, #fff);
-    color: var(--input-text, #111);
-    min-width: 0;
+    padding: 0.75rem;
+    border: 1px solid var(--input-border);
+    border-radius: 0.25rem;
+    background-color: var(--input-bg);
+    color: var(--text);
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--button-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  }
+  
+  .form-group input::placeholder,
+  .form-group select::placeholder {
+    color: var(--button-secondary);
+    opacity: 0.7;
   }
   
   .form-button {
-    padding: 1.25rem;
-    font-size: 1.25rem;
-    font-weight: bold;
-    background-color: var(--primary, #3b82f6);
+    align-self: flex-end;
+    background-color: var(--button-primary);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
   }
   
   .form-button:hover {
-    background-color: var(--primary-hover, #2563eb);
+    background-color: var(--button-primary-hover);
   }
   
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .form-group {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-button {
+      align-self: stretch;
+      width: 100%;
+    }
+  }

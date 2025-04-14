@@ -7,6 +7,14 @@ export default function MovieList({ movies, handleEdit, handleDelete, toggleLike
       <ul className="movie-list">
         {movies.map((movie, index) => (
           <li key={index} className="movie-card">
+            <button
+              onClick={() => toggleLike(index)}
+              className="like-button"
+              aria-label="Toggle Like"
+            >
+              {movie.liked ? '❤️' : '🤍'}
+            </button>
+
             <h3 className="movie-title">
               {movie.title} <span className="movie-year">({movie.year})</span>
             </h3>
@@ -17,9 +25,6 @@ export default function MovieList({ movies, handleEdit, handleDelete, toggleLike
             <p><strong>Duration:</strong> {movie.duration || 'N/A'} min</p>
 
             <div className="card-actions">
-              <button onClick={() => toggleLike(index)} className="like-button">
-                {movie.liked ? '❤️' : '🤍'}
-              </button>
               <button onClick={() => handleEdit(index)} className="edit-button">✏️ Edit</button>
               <button onClick={() => handleDelete(index)} className="delete-button">🗑 Delete</button>
             </div>

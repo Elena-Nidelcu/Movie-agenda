@@ -4,6 +4,7 @@ import MovieForm from './components/MovieForm.jsx';
 import Filters from './components/Filters.jsx';
 import MovieList from './components/MovieList.jsx';
 import './styles/Button.css';
+import './styles/App.css';
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -122,20 +123,22 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] p-6 transition-colors">
-      <Header theme={theme} setTheme={setTheme} />
-      <MovieForm
-        form={form}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        editIndex={editIndex}
-      />
-      <Filters filters={filters} handleFilterChange={handleFilterChange} />
-      <MovieList
-        movies={filteredMovies}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-        toggleLike={toggleLike}
-      />
+      <div className="container component-spacing">
+        <Header theme={theme} setTheme={setTheme} />
+        <MovieForm
+          form={form}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          editIndex={editIndex}
+        />
+        <Filters filters={filters} handleFilterChange={handleFilterChange} />
+        <MovieList
+          movies={filteredMovies}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          toggleLike={toggleLike}
+        />
+      </div>
     </div>
   );
 }
