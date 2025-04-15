@@ -1,6 +1,6 @@
 .filter-form-container {
     background-color: var(--card-bg);
-    border-radius: 0.5rem;
+    border-radius: 1.25rem;
     box-shadow: 0 0.125rem 0.25rem var(--shadow);
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -33,7 +33,7 @@
   .filter-group select {
     padding: 0.625rem;
     border: 1px solid var(--input-border);
-    border-radius: 0.25rem;
+    border-radius: 0.75rem;
     background-color: var(--input-bg);
     color: var(--text);
     font-size: 1.75rem;
