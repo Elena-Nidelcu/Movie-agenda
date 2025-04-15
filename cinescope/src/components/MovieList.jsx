@@ -25,8 +25,8 @@ export default function MovieList({ movies, handleEdit, handleDelete, toggleLike
             <p><strong>Duration:</strong> {movie.duration || 'N/A'} min</p>
 
             <div className="card-actions">
-              <button onClick={() => handleEdit(index)} className="edit-button">✏️ Edit</button>
-              <button onClick={() => handleDelete(index)} className="delete-button">🗑 Delete</button>
+              <button onClick={() => handleEdit(index)} className="edit-button">Edit</button>
+              <button onClick={() => handleDelete(index)} className="delete-button">Delete</button>
             </div>
           </li>
         ))}

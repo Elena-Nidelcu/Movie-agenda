@@ -1,0 +1,63 @@
+/* Header.css - Styling for the CineScope header component */
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .light-theme .header-container {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    color: white;
+  }
+  
+  .dark-theme .header-container {
+    background: linear-gradient(to right, #1f2937, #111827);
+    color: white;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .logo {
+    font-size: 1.75rem;
+  }
+  
+  .app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  .theme-toggle-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .theme-icon {
+    font-size: 1.25rem;
+  }
+  
+  /* Hover effects */
+  .header-container:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Animation for theme change */
+  @keyframes fadeTransition {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+  
+  .header-container {
+    animation: fadeTransition 0.3s ease-in-out;
+  }
