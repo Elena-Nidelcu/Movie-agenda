@@ -1,0 +1,63 @@
+.movie-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    margin: 0 auto;
+    border-radius: 16px;
+    background-color: var(--card-bg, #ffffff);
+    color: var(--card-text, #111);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .movie-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .movie-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .like-button {
+    font-size: 1.5rem;
+    color: #facc15; /* yellow-400 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .like-button:hover {
+    transform: scale(1.2);
+  }
+  
+  .delete-button {
+    font-size: 1.5rem;
+    color: #ef4444; /* red-500 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .delete-button:hover {
+    transform: scale(1.2);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .movie-card {
+      background-color: #1e293b; /* zinc-800 */
+      color: white;
+    }
+  }
+  

@@ -1,0 +1,99 @@
+:root {
+  /* Light theme variables */
+  --bg: #f8f9fa;
+  --text: #212529;
+  --card-bg: #ffffff;
+  --card-border: #dee2e6;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --button-primary: #0d6efd;
+  --button-primary-hover: #0b5ed7;
+  --button-danger: #dc3545;
+  --button-danger-hover: #bb2d3b;
+  --button-secondary: #6c757d;
+  --button-secondary-hover: #5c636a;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #212529;
+  --text: #f8f9fa;
+  --card-bg: #343a40;
+  --card-border: #495057;
+  --input-bg: #343a40;
+  --input-border: #495057;
+  --button-primary: #0d6efd;
+  --button-primary-hover: #0b5ed7;
+  --button-danger: #dc3545;
+  --button-danger-hover: #bb2d3b;
+  --button-secondary: #6c757d;
+  --button-secondary-hover: #5c636a;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+input, select, button {
+  font-family: inherit;
+  font-size: 1.125rem;
+}
+
+input, select {
+  padding: 0.5rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  background-color: var(--input-bg);
+  color: var(--text);
+  width: 100%;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--button-primary);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.transition-colors {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+/* Container with max width and centered content */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Add space between main components */
+.component-spacing > * {
+  margin-bottom: 2rem;
+}

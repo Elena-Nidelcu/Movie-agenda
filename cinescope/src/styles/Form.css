@@ -1,0 +1,68 @@
+.movie-form-container {
+    background-color: var(--card-bg);
+    border-radius: 1.25rem;
+    box-shadow: 0 0.125rem 0.25rem var(--shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--card-border);
+  }
+  
+  .movie-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-group {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .form-group input,
+  .form-group select {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--input-border);
+    border-radius: 0.75rem;
+    background-color: var(--input-bg);
+    color: var(--text);
+    font-size: 1.75rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--button-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  }
+  
+  .form-group input::placeholder,
+  .form-group select::placeholder {
+    color: var(--button-secondary);
+    opacity: 0.7;
+  }
+  
+  .form-button {
+    align-self: flex-end;
+    background: none;
+    border: none; /* Removed the border */
+    color: var(--button-secondary); 
+    border-radius: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 1.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .form-button:hover {
+    background-color: #28a745; /* Green color for the button */
+    color: white; /* White text when hovered */
+  }
+  

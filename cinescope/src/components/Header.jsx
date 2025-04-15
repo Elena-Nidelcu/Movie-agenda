@@ -1,13 +1,29 @@
+import '../styles/Header.css';
+import '../styles/ToggleSwitch.css';
+import '../styles/Button.css';
+
 export default function Header({ theme, setTheme }) {
-    const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'))
+  const toggleTheme = () => setTheme(t => (t === 'light' ? 'dark' : 'light'));
   
-    return (
-      <header className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">🎬 CineScope</h1>
-        <button onClick={toggleTheme} className="px-4 py-2 border rounded">
-          {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-        </button>
-      </header>
-    )
-  }
-  
+  return (
+    <header className={`header-container ${theme}-theme`}>
+      <div className="logo-section">
+        <span className="logo">🎬</span>
+        <h1 className="app-title">CineScope</h1>
+      </div>
+      
+      <div className="theme-toggle-section">
+        <span className="theme-icon">{theme === 'light' ? '☀️' : '🌙'}</span>
+        <label className="switch">
+          <input 
+            type="checkbox" 
+            onChange={toggleTheme} 
+            checked={theme === 'dark'} 
+            aria-label="Toggle theme"
+          />
+          <span className="slider"></span>
+        </label>
+      </div>
+    </header>
+  );
+}

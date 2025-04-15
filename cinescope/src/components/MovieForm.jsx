@@ -1,22 +1,74 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
+import '../styles/Form.css';
 
-export default function MovieForm({ onAdd }) {
-  const [title, setTitle] = useState('')
-  const [year, setYear] = useState('')
-
-  const submit = (e) => {
-    e.preventDefault()
-    if (!title || !year) return
-    onAdd({ title, year, liked: false, watched: false })
-    setTitle('')
-    setYear('')
-  }
-
+export default function MovieForm({ form, handleChange, handleSubmit, editIndex }) {
   return (
-    <form onSubmit={submit} className="flex gap-2 mb-6">
-      <input className="border p-2" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
-      <input className="border p-2" placeholder="Year" value={year} onChange={e => setYear(e.target.value)} />
-      <button className="bg-blue-500 text-white px-4">Add</button>
-    </form>
-  )
+    <div className="movie-form-container">
+      <form onSubmit={handleSubmit} className="movie-form">
+        <div className="form-group">
+          <input
+            placeholder="Title"
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+          />
+          <input
+            placeholder="Year"
+            name="year"
+            value={form.year}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <select
+            name="genre"
+            value={form.genre}
+            onChange={handleChange}
+          >
+            <option value="">Select Genre</option>
+            <option>Action</option>
+            <option>Animation</option>
+            <option>Biography</option>
+            <option>Comedy</option>
+            <option>Crime</option>
+            <option>Drama</option>
+            <option>Fantasy</option>
+            <option>History</option>
+            <option>Horror</option>
+            <option>Mistery</option>
+            <option>Music</option>
+            <option>Romance</option>
+            <option>Sci-Fi</option>
+            <option>Sport</option>
+            <option>Thriller</option>
+            <option>War</option>
+            <option>Western</option>
+          </select>
+          <input
+            placeholder="Rating (1–10)"
+            name="rating"
+            value={form.rating}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            placeholder="Director"
+            name="director"
+            value={form.director}
+            onChange={handleChange}
+          />
+          <input
+            placeholder="Duration (e.g. 120)"
+            name="duration"
+            value={form.duration}
+            onChange={handleChange}
+          />
+        </div>
+        <button className="form-button">
+          {editIndex !== null ? "Edit Movie" : "Add Movie"}
+        </button>
+      </form>
+    </div>
+  );
 }

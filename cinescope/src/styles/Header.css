@@ -1,0 +1,111 @@
+/* Header.css - Styling for the CineScope header component */
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-radius: 1.25rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .light-theme .header-container {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    color: white;
+  }
+  
+  .dark-theme .header-container {
+    background: linear-gradient(to right, #1f2937, #111827);
+    color: white;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .logo {
+    font-size: 2.5rem;
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  .theme-toggle-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .theme-icon {
+    font-size: 2.5rem;
+  }
+  
+  /* Hover effects */
+  .header-container:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Animation for theme change */
+  @keyframes fadeTransition {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+  
+  .header-container {
+    animation: fadeTransition 0.3s ease-in-out;
+  }
+
+  /* Toggle Switch Styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 64px;   /* Bigger width */
+    height: 36px;  /* Bigger height */
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .slider::before {
+    position: absolute;
+    content: "";
+    height: 28px;
+    width: 28px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  .switch input:checked + .slider {
+    background-color: #6366f1; /* A nice violet-blue */
+  }
+  
+  .switch input:checked + .slider::before {
+    transform: translateX(28px);
+  }
+  
+  .slider:hover {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+  
