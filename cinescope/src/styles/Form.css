@@ -27,7 +27,7 @@
     border-radius: 0.25rem;
     background-color: var(--input-bg);
     color: var(--text);
-    font-size: 0.95rem;
+    font-size: 1.75rem;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   
@@ -51,7 +51,7 @@
     border: none;
     border-radius: 0.25rem;
     padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
+    font-size: 1.75rem;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -60,17 +60,4 @@
   
   .form-button:hover {
     background-color: var(--button-primary-hover);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .form-group {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    
-    .form-button {
-      align-self: stretch;
-      width: 100%;
-    }
   }
