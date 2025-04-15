@@ -46,18 +46,23 @@
   
   .form-button {
     align-self: flex-end;
-    background-color: var(--button-primary);
-    color: white;
-    border: none;
+    background: none;
+    border: none; /* Removed the border */
+    color: var(--button-secondary); 
     border-radius: 0.75rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1.25rem;
     font-size: 1.75rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
     margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
   
   .form-button:hover {
-    background-color: var(--button-primary-hover);
+    background-color: #28a745; /* Green color for the button */
+    color: white; /* White text when hovered */
   }
+  
