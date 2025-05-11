@@ -1,12 +1,28 @@
-# React + Vite
+# CineScope
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A movie agenda web app inspired by IMDb and Letterboxd. It combines the main functionalities of both apps. I took the functionalities which I use the most, i.e. this functionality is personalised for me🙃.
 
-Currently, two official plugins are available:
+Users can:
+- Add, edit, delete, and like movies
+- Filter by rating, genre, duration, liked or not, title, and director
+- Switch between light and dark themes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Movie management: add/edit/remove your watched films
+- Live filtering: by rating, genre, duration, title, or director
+- Like system: mark your favorites
+- Dark mode: toggle between light & dark themes
+- Persistent storage: the app uses the browser’s local storage to persist user data between sessions.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Implementation
+
+The site is built with React and uses the tool Vite. It uses Tailwind CSS and some CSS Modules for styling. All movie data is stored in the browser using localStorage, so the list stays saved even after the user refreshes the page. 
+
+## Screenshots and the flow of the app
+
+
+
+## Deployment
+GitHub pages
