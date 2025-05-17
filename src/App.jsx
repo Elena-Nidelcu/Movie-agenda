@@ -6,6 +6,7 @@ import Filters from './components/Filters.jsx';
 import MovieList from './components/MovieList.jsx';
 import './styles/Button.css';
 import './styles/App.css';
+import './styles/Pagination.css';
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -199,14 +200,14 @@ function App() {
         />
         <div className="flex gap-4 justify-center mt-4">
           <button
-            className="pagination-button"
+            className="pagination-button prev"
             onClick={() => setOffset(Math.max(0, offset - limit))}
             disabled={offset === 0}
           >
             Previous
           </button>
           <button
-            className="pagination-button"
+            className="pagination-button next"
             onClick={() => setOffset(offset + limit)}
           >
             Next
