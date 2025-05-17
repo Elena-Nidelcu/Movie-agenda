@@ -60,13 +60,20 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!form.title || !form.director || isNaN(parseInt(form.year))) {
+      alert("Please fill all required fields correctly.");
+      return;
+    }
+
     const payload = {
-      id: Date.now(),
-      ...form,
-      liked: false,
+      id: editIndex !== null ? movies[editIndex].id : Date.now(),
+      title: form.title.trim(),
       year: parseInt(form.year),
+      genre: form.genre.trim() || null,
       rating: parseInt(form.rating),
-      duration: parseInt(form.duration)
+      director: form.director.trim(),
+      duration: parseInt(form.duration),
+      liked: editIndex !== null ? movies[editIndex].liked : false
     };
 
     const method = editIndex !== null ? "PUT" : "POST";
