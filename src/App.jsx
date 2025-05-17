@@ -1,3 +1,4 @@
+// MODIFIED App.jsx with JWT token and backend integration
 import { useState, useEffect } from 'react';
 import Header from './components/Header.jsx';
 import MovieForm from './components/MovieForm.jsx';
@@ -8,10 +9,8 @@ import './styles/App.css';
 
 function App() {
   const [theme, setTheme] = useState('light');
-  const [movies, setMovies] = useState(() => {
-    const stored = localStorage.getItem('watchedMovies');
-    return stored ? JSON.parse(stored) : [];
-  });
+  const [movies, setMovies] = useState([]);
+  const [token, setToken] = useState(null);
 
   const [form, setForm] = useState({
     title: '',
@@ -39,8 +38,16 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    localStorage.setItem('watchedMovies', JSON.stringify(movies));
-  }, [movies]);
+    fetch("http://localhost:8000/movies")
+      .then(res => res.json())
+      .then(setMovies);
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/token?role=ADMIN&permissions=WRITE", { method: "POST" })
+      .then(res => res.json())
+      .then(data => setToken(data.access_token));
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -53,25 +60,48 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (form.title && form.year && form.director) {
-      if (editIndex !== null) {
-        const updated = [...movies];
-        updated[editIndex] = { ...form, liked: movies[editIndex].liked || false };
-        setMovies(updated);
-        setEditIndex(null);
-      } else {
-        setMovies([...movies, { ...form, liked: false }]);
-      }
+    const payload = {
+      id: Date.now(),
+      ...form,
+      liked: false,
+      year: parseInt(form.year),
+      rating: parseInt(form.rating),
+      duration: parseInt(form.duration)
+    };
 
-      setForm({
-        title: '',
-        year: '',
-        genre: '',
-        rating: '',
-        director: '',
-        duration: '',
+    const method = editIndex !== null ? "PUT" : "POST";
+    const url = editIndex !== null
+      ? `http://localhost:8000/movies/${movies[editIndex].id}`
+      : "http://localhost:8000/movies";
+
+    fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.json())
+      .then(movie => {
+        if (editIndex !== null) {
+          const updated = [...movies];
+          updated[editIndex] = movie;
+          setMovies(updated);
+          setEditIndex(null);
+        } else {
+          setMovies([...movies, movie]);
+        }
+
+        setForm({
+          title: '',
+          year: '',
+          genre: '',
+          rating: '',
+          director: '',
+          duration: '',
+        });
       });
-    }
   };
 
   const handleEdit = (index) => {
@@ -80,15 +110,35 @@ function App() {
   };
 
   const handleDelete = (index) => {
-    const updated = movies.filter((_, i) => i !== index);
-    setMovies(updated);
+    const id = movies[index].id;
+    fetch(`http://localhost:8000/movies/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
+      .then(() => {
+        const updated = movies.filter((_, i) => i !== index);
+        setMovies(updated);
+      });
   };
 
   const toggleLike = (index) => {
-    const updated = movies.map((movie, i) =>
-      i === index ? { ...movie, liked: !movie.liked } : movie
-    );
-    setMovies(updated);
+    const updatedMovie = { ...movies[index], liked: !movies[index].liked };
+    fetch(`http://localhost:8000/movies/${updatedMovie.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(updatedMovie)
+    })
+      .then(res => res.json())
+      .then((updated) => {
+        const updatedList = [...movies];
+        updatedList[index] = updated;
+        setMovies(updatedList);
+      });
   };
 
   const filteredMovies = movies.filter((m) => {
