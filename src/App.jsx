@@ -1,4 +1,4 @@
-// MODIFIED App.jsx with JWT token and backend integration
+// MODIFIED App.jsx with JWT token, backend integration, and pagination support
 import { useState, useEffect } from 'react';
 import Header from './components/Header.jsx';
 import MovieForm from './components/MovieForm.jsx';
@@ -33,15 +33,18 @@ function App() {
     searchDirector: '',
   });
 
+  const [offset, setOffset] = useState(0);
+  const limit = 3; // Number of movies per page
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/movies")
+    fetch(`http://localhost:8000/movies?offset=${offset}&limit=${limit}`)
       .then(res => res.json())
       .then(setMovies);
-  }, []);
+  }, [offset]);
 
   useEffect(() => {
     fetch("http://localhost:8000/token?role=ADMIN&permissions=WRITE", { method: "POST" })
@@ -97,7 +100,7 @@ function App() {
           setMovies(updated);
           setEditIndex(null);
         } else {
-          setMovies([...movies, movie]);
+          setOffset(0); // Refresh first page
         }
 
         setForm({
@@ -125,8 +128,7 @@ function App() {
       }
     })
       .then(() => {
-        const updated = movies.filter((_, i) => i !== index);
-        setMovies(updated);
+        setOffset(0); // Refresh after deletion
       });
   };
 
@@ -195,6 +197,21 @@ function App() {
           handleDelete={handleDelete}
           toggleLike={toggleLike}
         />
+        <div className="flex gap-4 justify-center mt-4">
+          <button
+            className="pagination-button"
+            onClick={() => setOffset(Math.max(0, offset - limit))}
+            disabled={offset === 0}
+          >
+            Previous
+          </button>
+          <button
+            className="pagination-button"
+            onClick={() => setOffset(offset + limit)}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
